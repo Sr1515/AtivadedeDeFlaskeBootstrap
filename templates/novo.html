@@ -1,48 +1,37 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width" , initial-scale=1>
-    <title>Consecionaria</title>
-</head>
-
-<body>
-    <div>
-        <h1>{{titulo}}</h1>
-    </div>
-    <form method='post', action="/criar">
-        <fieldset>
-            <div id="id">
-                <label for="id">Id: </label>
-                <input id="id" name="id" type="text" placeholder="Digite o id" required>
-            </div><br>
-            <div id="marca">
-                <label for="marca">Marca: </label>
-                <input id="marca" name="marca" type="text" placeholder="Digite a marca do carro" required>
-            </div><br>
-            <div id="modelo">
-                <label for="modelo">Modelo: </label>
-                <input id="modelo" name="modelo" type="text" placeholder="Digite o modelo do carro" required>
-            </div><br>
-            <div id="cor">
-                <label for="cor">Cor: </label>
-                <input id="cor" name="cor" type="text" placeholder="Digite a cor do carro" required>
-            </div><br>
-            <div id="combustivel">
-                <label for="combustivel">Combustível: </label>
-                <input id="combustivel" name="combustivel" type="text" placeholder="Digite o combustivel do carro"
-                    required>
-            </div><br>
-            <div id="ano">
-                <label for="ano">Ano: </label>
-                <input id="ano" name="ano" type="text" placeholder="Digite o nome do aluno" required>
-            </div><br>
-            <div class="button" id="botao">
-                <button type="submit" id="bt">Enviar</button>
-            </div>
-        </fieldset>
-    </form>
-    </main>
-
-</html>
+{% extends "template.html" %}
+{% block conteudo %}
+<form method='post' , action="{{ url_for('criar') }}" class="row g-3">
+    <fieldset>
+        <!-- <div class="mb-3">
+            <label class="form-label" for="id">Id: </label>
+            <input id="id" name="id" type="text" placeholder="Digite o id"  class="form-control">
+        </div><br> -->
+        <div class="mb-3">
+            <label class="form-label" for="marca">Marca: </label>
+            <input id="marca" name="marca" type="text" placeholder="Digite a marca do carro" required
+                class="form-control">
+        </div><br>
+        <div class="mb-3">
+            <label class="form-label" for="modelo">Modelo: </label>
+            <input id="modelo" name="modelo" type="text" placeholder="Digite o modelo do carro" required
+                class="form-control">
+        </div><br>
+        <div class="mb-3">
+            <label class="form-label" for="cor">Cor: </label>
+            <input id="cor" name="cor" type="text" placeholder="Digite a cor do carro" required class="form-control">
+        </div><br>
+        <div class="mb-3">
+            <label class="form-label" for="combustivel">Combustível: </label>
+            <input id="combustivel" name="combustivel" type="text" placeholder="Digite o combustivel do carro" required
+                class="form-control">
+        </div><br>
+        <div class="mb-3">
+            <label class="form-label" for="ano">Ano: </label>
+            <input id="ano" name="ano" type="text" placeholder="Digite o nome do aluno" required class="form-control">
+        </div><br>
+        <div class="button" id="botao">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}
