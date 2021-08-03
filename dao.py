@@ -5,13 +5,11 @@ SQL_DELETA_CARRO = 'delete from carro where id = %s'
 SQL_CARRO_POR_ID = 'SELECT id, marca, modelo, cor, combustivel, ano from carro where id = %s'
 SQL_USUARIO_POR_ID = 'SELECT id, nome, senha from usuario where id = %s'
 SQL_ATUALIZA_CARRO = 'UPDATE carro SET marca=%s, modelo=%s, cor=%s, combustivel=%s, ano=%s WHERE id=%s'
-SQL_BUSCA_CARROS = 'SELECT id, marca, modelo, cor, combustivel, ano from carro'
+SQL_BUSCA_CARROS = 'SELECT id, marca, modelo, cor, combustivel, ano from carro ORDER BY id DESC'
 SQL_CRIA_CARRO = 'INSERT into carro (marca, modelo, cor, combustivel, ano) values (%s, %s, %s, %s, %s) RETURNING id'
 SQL_CRIA_USUARIO = 'INSERT into usuario (id, nome, senha) values (%s, %s, %s)'
 SQL_ATUALIZA_USUARIO = 'UPDATE usuario SET id=%s, nome=%s, senha=%s where id = %s'
 SQL_AUTENTICAR_USUARIO = "SELECT id, nome, senha FROM usuario WHERE id = %s AND senha = %s"
-
-
 
 class CarroDao:
     def __init__(self, db):
@@ -30,9 +28,13 @@ class CarroDao:
         cursor.close()
         return carro
 
-    def listar(self):
+    def listar(self, pesquisa):
         cursor = self.__db.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cursor.execute(SQL_BUSCA_CARROS)
+        if pesquisa:
+            SQL_BUSCA_PESQUISA = 'SELECT id, marca, modelo, cor, combustivel, ano from carro WHERE marca = %s ORDER BY id DESC'
+            cursor.execute(SQL_BUSCA_PESQUISA, (pesquisa,)) # tem que ser tupla
+        else:
+            cursor.execute(SQL_BUSCA_CARROS)
         carros = traduz_carros(cursor.fetchall())
         cursor.close()
         return carros

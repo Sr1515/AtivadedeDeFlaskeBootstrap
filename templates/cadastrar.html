@@ -1,0 +1,26 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<form method='post' , action="{{ url_for('cadastro') }}" class="row g-3">
+
+    <div class="mb-3">
+        <label class="form-label" for="username">Nome de Usuario: </label>
+        <input id="username" name="username" type="text" placeholder="Digite o nome de usuario (dps tu muda)" required
+            class="form-control">
+    </div><br>
+
+    <div class="mb-3">
+        <label class="form-label" for="name">Nome Completo: </label>
+        <input id="name" name="name" type="text" placeholder="Digite a marca do carro" required class="form-control">
+    </div><br>
+
+    <div class="mb-3">
+        <label class="form-label" for="password">Senha: </label>
+        <input id="password" name="password" type="password" placeholder="Digite a marca do carro" required
+            class="form-control">
+    </div><br>
+
+    <div class="button" id="botao">
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, flash, url_for
-from models import Carro
+from models import Carro, Usuario
 from config import app, db
 from dao import CarroDao, UsuarioDao
 
@@ -7,9 +7,13 @@ carro_dao = CarroDao(db)
 usuario_dao = UsuarioDao(db)
 
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
-    return render_template('lista.html', titulo='Carros', carros=carro_dao.listar())
+    if request.method == 'POST':
+        pesquisa = request.form['pesquisa']
+    else:
+        pesquisa = None
+    return render_template('lista.html', titulo='Carros', carros=carro_dao.listar(pesquisa), tamanho=len(carro_dao.listar(pesquisa)) == 0)
 
 
 @app.route('/novo')
@@ -63,6 +67,19 @@ def deletar(id):
 def login():
     proxima = request.args.get('proxima')
     return render_template('login.html', titulo='Login', proxima=proxima)
+
+@app.route('/cadastro', methods=['GET', 'POST'])
+def cadastro():
+    global usuario_dao
+    if request.method == 'POST':
+        username = request.form['username']
+        name = request.form['name']
+        password = request.form['password']
+        
+        usuario = Usuario(id = username, nome=name, senha=password)
+        user = usuario_dao.salvar(usuario)
+        return redirect(url_for('login'))
+    return render_template('cadastrar.html', titulo='Cadastrar')
 
 
 @app.route("/autenticar",  methods=['POST', ])
