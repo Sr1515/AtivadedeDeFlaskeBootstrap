@@ -1,0 +1,36 @@
+{% extends "template.html" %}
+{% block conteudo %}
+<form method='post' , action="{{ url_for('atualizar') }}" class="row g-3">
+    <fieldset>
+        <input type="hidden" name="id" value="{{ carro.id }}">
+        <div class="mb-3">
+            <label class="form-label" for="marca">Marca: </label>
+            <input id="marca" name="marca" type="text" placeholder="Digite a marca do carro" required
+                class="form-control" value="{{ carro.marca }}">
+        </div><br>
+        <div class="mb-3">
+            <label class="form-label" for="modelo">Modelo: </label>
+            <input id="modelo" name="modelo" type="text" placeholder="Digite o modelo do carro" required
+                class="form-control" value="{{ carro.modelo }}">
+        </div><br>
+        <div class="mb-3">
+            <label class="form-label" for="cor">Cor: </label>
+            <input id="cor" name="cor" type="text" placeholder="Digite a cor do carro" required class="form-control"
+                value="{{ carro.cor }}">
+        </div><br>
+        <div class="mb-3">
+            <label class="form-label" for="combustivel">Combustível: </label>
+            <input id="combustivel" name="combustivel" type="text" placeholder="Digite o combustivel do carro" required
+                class="form-control" value="{{ carro.combustivel }}">
+        </div><br>
+        <div class="mb-3">
+            <label class="form-label" for="ano">Ano: </label>
+            <input id="ano" name="ano" type="text" placeholder="Digite o nome do aluno" required class="form-control"
+                value="{{ carro.ano }}">
+        </div><br>
+        <div class="button" id="botao">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}
