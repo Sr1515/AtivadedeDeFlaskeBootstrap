@@ -20,7 +20,7 @@ def index():
 def novo():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
-    return render_template('novo.html', titulo='Novo carro')
+    return render_template('novo.html', titulo='Novo Carro')
 
 
 @app.route('/criar', methods=['POST', ])

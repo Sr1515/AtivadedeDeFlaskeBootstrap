@@ -13,7 +13,7 @@
     <tbody>
         {% if tamanho%}
         <tr>
-            <td>NAO FORAM ENCONTRADOS NENHUM RESULTADO</td>
+            <td>Nenhum Resultado Foi Encontrado</td>
         </tr>
         {% else %}
         {% for carro in carros %}
@@ -40,10 +40,10 @@
 <form method='post' , action="{{ url_for('index') }}" class="row g-3">
 
     <div class="mb-3">
-        <input id="pesquisa" name="pesquisa" type="text" placeholder="pesquisa" class="form-control">
+        <input id="pesquisa" name="pesquisa" type="text" placeholder="Pesquise o carro pela marca" class="form-control">
     </div>
     <div class="button" id="botao">
-        <button type="submit" class="btn btn-primary">pesquisa</button>
+        <button type="submit" class="btn btn-primary">Pesquisar</button>
     </div>
 </form>
 
